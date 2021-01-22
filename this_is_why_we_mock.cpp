@@ -124,8 +124,8 @@ TEST(this_is_why_we_mock, happy_path) {
     EXPECT_CALL(heater, on).Times(0);
     EXPECT_TRUE(controller.step());
 
-    // Temperature below target temperature but within hysteresis.
-    // Temperature below target temperature/hysteresis, heater shall be turned on.
+    // Temperature below target temperature but still within hysteresis.
+    // Heater state shall not change.
     EXPECT_CALL(sensor, getTemperature).WillOnce(Return(targetTemp - hysteresis));
     EXPECT_CALL(heater, off).Times(0);
     EXPECT_CALL(heater, on).Times(0);
